@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get('/check/:username', async (req, res) => {
-    const username = req.params.username;
+    const username = req.params.username.toLowerCase();
     try {
         const response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${username}`);
         if (response.ok) {
