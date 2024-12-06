@@ -10,8 +10,8 @@ app.get('/check/:username', async (req, res) => {
         if (response.ok) {
             const data = await response.json();
             res.json({ username: data.name, status: 'Claimed' }); 
-        } else if (response.status === 204) {
-            res.json({ username, status: 'Unclaimed' });
+        } else if (response.status === 204 || response.status === 404) {
+            res.json({ username, status: 'Unclaimed' }); 
         } else {
             res.status(response.status).json({ username, status: `Error: ${response.status}` });
         }
